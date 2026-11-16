@@ -55,25 +55,12 @@ export default function NovaTarefa({
 
     if (tarefaExistente) {
       if (typeof onEditarTarefa !== 'function') {
-        Alert.alert('Erro', 'Função de edição não encontrada.');
+        setErro('Função de edição não encontrada.');
         return;
       }
 
-        console.log('Chamando função de edição...');
-        console.log('ID da tarefa:', tarefaExistente.id);
-
-        onEditarTarefa(tarefaExistente.id, dadosTarefa);
-
-      Alert.alert(
-        'Sucesso!',
-        'Sua tarefa foi atualizada.',
-        [
-          {
-            text: 'OK',
-            onPress: () => navigation.goBack(),
-          },
-        ]
-      );
+      onEditarTarefa(tarefaExistente.id, dadosTarefa);
+      navigation.goBack();
     } else {
       onAdicionarTarefa({
         ...dadosTarefa,
